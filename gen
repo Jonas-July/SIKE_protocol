@@ -1,0 +1,1 @@
+gcc -o prot prot.c Comm_node.c -Llibs -lsidh -ltiny-aes
