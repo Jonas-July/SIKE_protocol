@@ -18,12 +18,12 @@ int main()
 	set_other_public_key(&CPU, USB_KEY.pk_own);
 	set_other_public_key(&USB_KEY, CPU.pk_own);
 
-	printf(compare_public_keys(&USB_KEY, &CPU) == 0
+	printf(compare_public_keys(&USB_KEY, &CPU)
 		? "Public key of CPU correct\n"
 		: "Public key wrong\n");
 	
 
-	printf(	compare_public_keys(&CPU, &USB_KEY) == 0
+	printf(	compare_public_keys(&CPU, &USB_KEY)
 		? "Public key of USB_KEY correct\n" 
 		: "Public key wrong\n");
 
@@ -44,7 +44,7 @@ int main()
 	decrypt_shared_secret(&CPU, ct_UC);
 
 	printf("Communication successful!\n");
-	printf( compare_shared_secrets(&USB_KEY, &CPU) == 0
+	printf( compare_shared_secrets(&USB_KEY, &CPU)
 		? "Transmission correct.\n" 
 		: "Transmission wrong.\n");
 
@@ -59,7 +59,7 @@ int main()
 	decrypt_shared_secret(&USB_KEY, ct_CU);
 
         printf("Communication successful!\n");
-	printf( compare_shared_secrets(&CPU, &USB_KEY) == 0
+	printf( compare_shared_secrets(&CPU, &USB_KEY)
 		? "Transmission correct.\n" 
 		: "Transmission wrong.\n");
 
@@ -81,7 +81,7 @@ int main()
 	decrypt_ephemeral(&CPU, enc_pk_eph_usb);
 	printf("Communication successful!\n");
 
-	printf( compare_ephemeral_public_keys(&USB_KEY, &CPU) == 0
+	printf( compare_ephemeral_public_keys(&USB_KEY, &CPU)
 		? "Transmission correct.\n"
 		: "Transmission wrong.\n");
 
@@ -94,7 +94,7 @@ int main()
         decrypt_ephemeral(&USB_KEY, enc_pk_eph_cpu);
         printf("Communication successful!\n");
 
-        printf( compare_ephemeral_public_keys(&CPU, &USB_KEY) == 0
+        printf( compare_ephemeral_public_keys(&CPU, &USB_KEY)
                 ? "Transmission correct.\n"
                 : "Transmission wrong.\n");
 
@@ -112,7 +112,7 @@ int main()
         decrypt_shared_session_secret(&CPU, ct_UC_session);
 
         printf("Communication successful!\n");
-        printf( compare_shared_session_keys(&USB_KEY, &CPU) == 0
+        printf( compare_shared_session_keys(&USB_KEY, &CPU)
                 ? "Transmission correct.\n"
                 : "Transmission wrong.\n");
 
@@ -127,7 +127,7 @@ int main()
         decrypt_shared_secret(&USB_KEY, ct_CU_session);
 
         printf("Communication successful!\n");
-        printf( compare_shared_session_keys(&CPU, &USB_KEY) == 0
+        printf( compare_shared_session_keys(&CPU, &USB_KEY)
                 ? "Transmission correct.\n"
                 : "Transmission wrong.\n");
 
