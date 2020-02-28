@@ -8,8 +8,8 @@ The used implementation of SIKE is PQCrypto-SIDH from Microsoft at https://githu
 The used implementation of AES is tinyAES from kokke at https://github.com/kokke/tiny-AES-c.git
 
 # Build demonstration
-Clone this repository using `git clone --recursive https://github.com/Jonas-July/SIKE_protocol.git` or similar
-`cd` into the directory
-Run `./gen`. This will automatically build the executable.
+- Clone this repository using `git clone --recursive https://github.com/Jonas-July/SIKE_protocol.git` or similar
+- `cd` into the directory
+- Run `./gen`. This will automatically build the executable.
 
 The resulting demonstration of the protocol can be run with `./prot`
