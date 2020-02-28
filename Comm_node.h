@@ -34,17 +34,17 @@ void set_other_public_key(struct Comm_node* node, const unsigned char* pk_other)
 
 unsigned char* generate_shared_secret(struct Comm_node* node);
 
-void decrypt_shared_secret(struct Comm_node* node, const unsigned char* enc_ss);
+void decrypt_shared_secret(struct Comm_node* node, unsigned char* enc_ss);
 
 void generate_ephemeral_keypair(struct Comm_node* node);
 
 unsigned char* encrypt_ephemeral(struct Comm_node* node);
 
-void decrypt_ephemeral(struct Comm_node* node, const unsigned char* enc_pk_eph_other);
+void decrypt_ephemeral(struct Comm_node* node, unsigned char* enc_pk_eph_other);
 
 unsigned char* generate_shared_session_secret(struct Comm_node* node);
 
-void decrypt_shared_session_secret(struct Comm_node* node, const unsigned char* enc_ss);
+void decrypt_shared_session_secret(struct Comm_node* node, unsigned char* enc_ss);
 
 
 #endif

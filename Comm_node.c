@@ -59,8 +59,8 @@ void delete_Comm_node(struct Comm_node* node)
 	free(node->pk_eph);
         if (node->pk_eph_other != NULL) free(node->pk_eph_other);
 
-	free(node->ss_from_session);
-	free(node->ss_to_session);
+	free(node->ss_channel_from_session);
+	free(node->ss_channel_to_session);
 }
 
 void set_other_public_key(struct Comm_node* node, const unsigned char* pk_other)
@@ -84,7 +84,7 @@ unsigned char* generate_shared_secret(struct Comm_node* node)
 	return ct;
 }
 
-void decrypt_shared_secret(struct Comm_node* node, const unsigned char* enc_ss)
+void decrypt_shared_secret(struct Comm_node* node, unsigned char* enc_ss)
 {
 	crypto_kem_dec_SIKEp751(node->ss_channel_from, enc_ss, node->sk_own);
 	struct AES_ctx aes_from;
@@ -109,7 +109,7 @@ unsigned char* encrypt_ephemeral(struct Comm_node* node)
 	return enc_pk_eph_other;
 }
 
-void decrypt_ephemeral(struct Comm_node* node, const unsigned char* enc_pk_eph_other)
+void decrypt_ephemeral(struct Comm_node* node, unsigned char* enc_pk_eph_other)
 {
 	unsigned char* pk_eph_other = calloc(sizeof(char), CRYPTO_PUBLICKEYBYTES);
 	memcpy(pk_eph_other, enc_pk_eph_other, CRYPTO_PUBLICKEYBYTES);
@@ -132,7 +132,7 @@ unsigned char* generate_shared_session_secret(struct Comm_node* node)
         return ct;
 }
 
-void decrypt_shared_session_secret(struct Comm_node* node, const unsigned char* enc_ss)
+void decrypt_shared_session_secret(struct Comm_node* node, unsigned char* enc_ss)
 {
         crypto_kem_dec_SIKEp751(node->ss_channel_from_session, enc_ss, node->sk_own);
 
