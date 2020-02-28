@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 #include "Comm_node.h"
 #include "check_transmission.h"

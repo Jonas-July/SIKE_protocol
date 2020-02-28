@@ -1,6 +1,5 @@
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 #include "aes.h"
 #include "Comm_node.h"
