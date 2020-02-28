@@ -18,8 +18,9 @@ int main()
 	set_other_public_key(&CPU, USB_KEY.pk_own);
 	set_other_public_key(&USB_KEY, CPU.pk_own);
 
-	int diff_pk = compare_public_keys(&USB_KEY, &CPU);
-	printf(diff_pk == 0 ? "Public key of CPU correct\n" : "Public key wrong\n");
+	printf(compare_public_keys(&USB_KEY, &CPU) == 0
+		? "Public key of CPU correct\n"
+		: "Public key wrong\n");
 	
 
 	printf(	compare_public_keys(&CPU, &USB_KEY) == 0
