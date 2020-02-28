@@ -1,1 +1,19 @@
+mkdir ./libs
+
+#compile SIKE
+cd PQCrypto-SIDH/
+make CC=gcc ARCH=x64 OPT_LEVEL=GENERIC USE_MULX=FALSE USE_ADX=FALSE
+cp lib751/libsidh.a ../libs/libsidh.a
+make clean
+cd ..
+
+#compile AES
+cd tiny-AES-c
+make lib
+cp aes.a ../libs/libtiny-aes.a
+make clean
+cd ..
+
 gcc -o prot prot.c Comm_node.c check_transmission.c -Llibs -lsidh -ltiny-aes
+
+rm -rf ./libs
