@@ -57,6 +57,10 @@ void delete_Comm_node(struct Comm_node* node)
 
 	free(node->sk_eph);
 	free(node->pk_eph);
+        if (node->pk_eph_other != NULL) free(node->pk_eph_other);
+
+	free(node->ss_from_session);
+	free(node->ss_to_session);
 }
 
 void set_other_public_key(struct Comm_node* node, const unsigned char* pk_other)
@@ -88,6 +92,8 @@ void decrypt_shared_secret(struct Comm_node* node, const unsigned char* enc_ss)
 	AES_init_ctx_iv(&aes_from, node->ss_channel_from, iv);
 
 	node->aes_from = aes_from;
+
+	free(enc_ss);
 }
 
 void generate_ephemeral_keypair(struct Comm_node* node)
@@ -109,6 +115,8 @@ void decrypt_ephemeral(struct Comm_node* node, const unsigned char* enc_pk_eph_o
 	memcpy(pk_eph_other, enc_pk_eph_other, CRYPTO_PUBLICKEYBYTES);
 	AES_CTR_xcrypt_buffer(&node->aes_from, pk_eph_other, CRYPTO_PUBLICKEYBYTES);
 	node->pk_eph_other = pk_eph_other;
+
+	free(enc_pk_eph_other);
 }
 
 unsigned char* generate_shared_session_secret(struct Comm_node* node)
@@ -133,5 +141,7 @@ void decrypt_shared_session_secret(struct Comm_node* node, const unsigned char* 
 	AES_init_ctx_iv(&aes_from_session, node->ss_channel_from, iv);
 
 	node->aes_from_session = aes_from_session;
+
+	free(enc_ss);
 }
 
